@@ -1,4 +1,5 @@
 import ticketListReducer from '../../reducers/ticket-list-reducer';
+import Moment from 'moment';
 
 describe('ticketListReducer', () => {
 
@@ -35,14 +36,18 @@ describe('ticketListReducer', () => {
       names: names,
       location: location,
       issue: issue,
-      id: id
+      timeOpen: timeOpen,
+      id: id,
+      formattedWaitTime: new Moment().fromNow(true)
     };
     expect(ticketListReducer({}, action)).toEqual({
       [id] : {
         names: names,
         location: location,
         issue: issue,
-        id: id
+        timeOpen: timeOpen,
+        id: id,
+        formattedWaitTime: 'a few seconds'
       }
     });
   });
