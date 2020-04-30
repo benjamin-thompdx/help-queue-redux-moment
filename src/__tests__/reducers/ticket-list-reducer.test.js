@@ -30,7 +30,7 @@ describe('ticketListReducer', () => {
   });
 
 
-  test('Should successfully add new ticket data to masterTicketList', ()=> {
+  test('should successfully add a ticket to the ticket list that includes Moment-formatted wait times', ()=> {
     const { names, location, issue, timeOpen, id } = ticketData;
     action = {
       type: c.ADD_TICKET, 

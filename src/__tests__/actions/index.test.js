@@ -26,4 +26,12 @@ describe('help queue actions', () => {
     });
   });
 
+  it('updateTime should create UPDATE_TIME action', () => {
+    expect(actions.updateTime(1, 'a few seconds')).toEqual({
+      type: c.UPDATE_TIME,
+      id: 1,
+      formattedWaitTime: 'a few seconds'
+    });
+  });
+
 });
