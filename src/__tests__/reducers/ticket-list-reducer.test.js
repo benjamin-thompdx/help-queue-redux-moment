@@ -19,7 +19,8 @@ describe('ticketListReducer', () => {
     names: 'names solo',
     location: 'location solo',
     issue: 'issue solo',
-    id:1
+    timeOpen: 0,
+    id: 1
   };
 
   test('Should return default state if no action type is recognized', ()=> {
@@ -56,6 +57,25 @@ describe('ticketListReducer', () => {
       location: 'location 2',
       issue: 'issue 2',
       id: 2 }
+    });
+  });
+
+  test('Should add a formatted wait time to ticket entry', () => {
+    const { names, location, issue, timeOpen, id } = ticketData;
+    action = {
+      type: c.UPDATE_TIME,
+      formattedWaitTime: '4 minutes',
+      id: id
+    };
+    expect(ticketListReducer({ [id]: ticketData }, action)).toEqual({
+      [id]: {
+        names: names,
+        location: location,
+        issue: issue,
+        timeOpen: timeOpen,
+        id: id,
+        formattedWaitTime: '4 minutes'
+      }
     });
   });
 
