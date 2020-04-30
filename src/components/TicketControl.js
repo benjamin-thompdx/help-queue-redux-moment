@@ -4,7 +4,6 @@ import TicketList from './TicketList';
 import TicketDetail from './TicketDetail';
 import EditTicketForm from './EditTicketForm';
 import { connect } from 'react-redux';
-import { act } from 'react-dom/test-utils';
 import PropTypes from 'prop-types';
 import * as a from './../actions';
 
@@ -17,6 +16,22 @@ class TicketControl extends React.Component {
       selectedTicket: null, //local state: determines whether our Ticket Detail component should show or not 
       editing: false
     };
+  }
+
+  componentDidMount() {
+    this.waitTimeUpdateTimer = setInterval(() => 
+      this.updateTicketElapsedWaitTime(),
+    1000
+    );
+  }
+
+  componentWillUnmount() {
+    console.log('component unmounted!');
+    clearInterval(this.waitTimeUpdateTimer);
+  }
+
+  updateTicketElapsedWaitTime = () => {
+    console.log('tick');
   }
 
   handleClick = () => {
